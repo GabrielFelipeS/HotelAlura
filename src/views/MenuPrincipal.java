@@ -77,7 +77,7 @@ public class MenuPrincipal extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblCopyR = new JLabel("Desenvolvido por Fulanita de Tal © 2023");
+		JLabel lblCopyR = new JLabel("Desenvolvido por Gabriel Felipe ©2023");
 		lblCopyR.setBounds(315, 11, 301, 19);
 		lblCopyR.setForeground(new Color(240, 248, 255));
 		lblCopyR.setFont(new Font("Roboto", Font.PLAIN, 16));
@@ -93,12 +93,14 @@ public class MenuPrincipal extends JFrame {
 			     
 			}
 		});
+		
 		header.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				headerMousePressed(e);
 			}
 		});
+		
 		header.setLayout(null);
 		header.setBackground(Color.WHITE);
 		panel.add(header);
@@ -151,9 +153,9 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel imageLogin = new JLabel("");
 		imageLogin.setBounds(0, 0, 80, 70);
-		btnLogin.add(imageLogin);
 		imageLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		imageLogin.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/imagenes/login.png")));
+		btnLogin.add(imageLogin);
 		
 		JLabel lblTitulo = new JLabel("LOGIN");
 		lblTitulo.setBounds(754, 265, 83, 24);
