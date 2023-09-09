@@ -11,6 +11,9 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import controller.ReservaController;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -110,6 +113,13 @@ public class ReservasView extends JFrame {
 		txtDataE.setBorder(new LineBorder(SystemColor.window));
 		txtDataE.setDateFormatString("yyyy-MM-dd");
 		txtDataE.setFont(new Font("Roboto", Font.PLAIN, 18));
+		txtDataE.addPropertyChangeListener(new PropertyChangeListener() {		
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				new ReservaController().diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
+			}
+		});
+		
 		panel.add(txtDataE);
 		
 		lblValorSimbolo = new JLabel("$");
@@ -141,7 +151,7 @@ public class ReservasView extends JFrame {
 		txtDataS.setFont(new Font("Roboto", Font.PLAIN, 18));
 		txtDataS.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				//Ativa o evento, após o usuário selecionar as datas, o valor da reserva deve ser calculado
+				new ReservaController().diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
 			}
 		});
 		txtDataS.setDateFormatString("yyyy-MM-dd");
@@ -295,7 +305,10 @@ public class ReservasView extends JFrame {
 		btnProximo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (ReservasView.txtDataE.getDate() != null && ReservasView.txtDataS.getDate() != null) {		
+				if(ReservasView.txtValor.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "A data de inicio da reserva é maior do que a data de fim", "Data incorreta",JOptionPane.ERROR_MESSAGE);
+					
+				} else if (ReservasView.txtDataE.getDate() != null && ReservasView.txtDataS.getDate() != null) {		
 					RegistroHospede registro = new RegistroHospede();
 					registro.setVisible(true);
 				} else {
