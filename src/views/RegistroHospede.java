@@ -32,7 +32,7 @@ public class RegistroHospede extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtSobrenome;
 	private JTextField txtTelefone;
-	private JTextField txtNreserva;
+	public static JTextField txtNreserva;
 	private JDateChooser txtDataN;
 	private JComboBox<Format> txtNacionalidade;
 	private JLabel labelExit;

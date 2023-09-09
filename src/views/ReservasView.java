@@ -31,7 +31,8 @@ import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class ReservasView extends JFrame {
-
+	private ReservaController reservaController = new ReservaController();
+	
 	private JPanel contentPane;
 	public static JTextField txtValor;
 	public static JDateChooser txtDataE;
@@ -116,7 +117,7 @@ public class ReservasView extends JFrame {
 		txtDataE.addPropertyChangeListener(new PropertyChangeListener() {		
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				new ReservaController().diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
+				reservaController.diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
 			}
 		});
 		
@@ -151,7 +152,7 @@ public class ReservasView extends JFrame {
 		txtDataS.setFont(new Font("Roboto", Font.PLAIN, 18));
 		txtDataS.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				new ReservaController().diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
+				reservaController.diasChange(ReservasView.txtDataE, ReservasView.txtDataS, txtValor);
 			}
 		});
 		txtDataS.setDateFormatString("yyyy-MM-dd");
@@ -309,8 +310,11 @@ public class ReservasView extends JFrame {
 					JOptionPane.showMessageDialog(null, "A data de inicio da reserva é maior do que a data de fim", "Data incorreta",JOptionPane.ERROR_MESSAGE);
 					
 				} else if (ReservasView.txtDataE.getDate() != null && ReservasView.txtDataS.getDate() != null) {		
+					
+					reservaController.cadastrar();
 					RegistroHospede registro = new RegistroHospede();
 					registro.setVisible(true);
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Deve preencher todos os campos.");
 				}
